@@ -1,0 +1,10 @@
+[gd_resource type="JSON" format=3 uid="uid://ba5ndq7cxobww"]
+
+[resource]
+data = {
+"axe man": ["hello there fellow traveler at the end of the world!", "how do you do on this fine (nuclear) winter day?", "what's that?", "there's someone trapped underneath some debris?", "oh wait what noooo", "what a pity. that's the way it is sometimes", "you want to help them?", "and you want my axe?", "uhhhhhh sure i guess"],
+"double jump man": ["thank you so much for saving me!!!", "but i'm afraid it might've been in vain...", "this building is filled with an airborne virus", "and i've already been infected!", "i don't think i'm going to make it..", "...", "wait a minute", "is that a DOCTOR?????", "if you can get him, we can get the cure!!!", "but i'm not alone", "my 3 other friends are in here with me", "if you can rescue all of us and get us the cure in time", "we'll take you in our helicopter and get you to the nearest bunker with supplies", "the helipad is just upstairs", "wait, before you go", "let me teach you a neat trick", "it's called double jumping", "just hit the jump button mid air to get an extra boost!", "good luck!"],
+"hover man": ["brrr t-thank y-you s-s-so much for rescu- AHCHOO", "s-sorry i dropped my coat while i was up here", "its way too cold in here to be in a t-shirt and shorts brrrrr", "...", "oh my friend sent you?", "you're my savior!! thank you so much!!", "i might have some way to repay that kindness..", "a few years ago i feel into a vat of radioactive kites", "ever since then i've had the ability to hover, but only for 2 seconds at a time", "whenever you need to hover, hold down the shift button", "you'll see the power meter on the side", "go forth adventurer!! and get my friends!!"],
+"tummy hurt man": [],
+"window man": []
+}
