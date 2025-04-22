@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://doewx6x5hgfgy"]
-
-[node name="title" type="Node2D"]
-
-[node name="background" type="Sprite2D" parent="."]
-
-[node name="start" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
