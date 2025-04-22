@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://y5ghca8rlssc"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ejy81"]
+[ext_resource type="Texture2D" uid="uid://bikiyyedk27ym" path="res://icon.svg" id="1_w4ahv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glpvf"]
+radius = 52.0
+height = 150.0
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(0.432652, 0.654248)
+collision_mask = 2
+script = ExtResource("1_ejy81")
+metadata/_edit_group_ = true
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.796875, 1.21875)
+texture = ExtResource("1_w4ahv")
+
+[node name="playerColl" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_glpvf")
+
+[node name="coyoteTimer" type="Timer" parent="."]
+wait_time = 0.6
