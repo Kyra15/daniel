@@ -1,0 +1,143 @@
+[gd_scene load_steps=13 format=3 uid="uid://cj8f2ruvox2nr"]
+
+[ext_resource type="Script" uid="uid://m66rfo6apwaj" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c5fsfjryjstpu" path="res://level.tscn" id="2_dam4j"]
+[ext_resource type="PackedScene" uid="uid://y5ghca8rlssc" path="res://player.tscn" id="3_8nyqt"]
+[ext_resource type="PackedScene" uid="uid://c6unvkiej452v" path="res://npc.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c5s0s1otoudxd" path="res://debris.tscn" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://c1xe1mkire23r" path="res://dialogue_box.tscn" id="6_272bh"]
+[ext_resource type="Script" uid="uid://c1xgqa6fuhlrh" path="res://timer_label.gd" id="6_mrfdm"]
+[ext_resource type="PackedScene" uid="uid://dhdimkt86m7ij" path="res://game_over.tscn" id="7_gp2uf"]
+[ext_resource type="PackedScene" uid="uid://c3v2d85hpnmjm" path="res://title.tscn" id="8_ettt6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
+size = Vector2(93, 111.5)
+
+[sub_resource type="Gradient" id="Gradient_y6bk0"]
+colors = PackedColorArray(0, 0, 0, 0.607843, 0, 0, 0, 0.607843)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o3yrr"]
+gradient = SubResource("Gradient_y6bk0")
+width = 150
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_7mycd")
+
+[node name="level" parent="." instance=ExtResource("2_dam4j")]
+position = Vector2(0, 27)
+
+[node name="axe_man" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(892, 1260)
+sprite_path = "res://art/axeman.jpg"
+
+[node name="double_man" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(492, 1312)
+sprite_path = "res://art/doubleman.png"
+
+[node name="hover_man" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(732, 737)
+sprite_path = "res://art/hover.png"
+
+[node name="tummy_man" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(108, 465)
+sprite_path = "res://art/tummyhurt.png"
+
+[node name="window_man" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(1695, 703)
+sprite_path = "res://art/window.png"
+
+[node name="doctor" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(1580, 1303)
+sprite_path = "res://art/doctor.png"
+
+[node name="door" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
+position = Vector2(1800, 288)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="debris1" parent="." instance=ExtResource("4_kek77")]
+position = Vector2(496, 1284)
+
+[node name="debris2" parent="." instance=ExtResource("4_kek77")]
+position = Vector2(730, 725)
+
+[node name="debris3" parent="." instance=ExtResource("4_kek77")]
+position = Vector2(1810, 268)
+
+[node name="player" parent="." instance=ExtResource("3_8nyqt")]
+position = Vector2(176, 1277)
+
+[node name="camera" type="Camera2D" parent="player"]
+position = Vector2(-2.31134, 0)
+scale = Vector2(2.31133, 1.52847)
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="dialogue_box" parent="canvas" instance=ExtResource("6_272bh")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -574.0
+offset_top = -320.0
+offset_right = 572.0
+offset_bottom = 323.0
+mouse_filter = 2
+
+[node name="dash_meter" type="ProgressBar" parent="canvas"]
+offset_left = 33.0
+offset_top = 364.0
+offset_right = 75.0
+offset_bottom = 600.0
+max_value = 0.5
+fill_mode = 3
+show_percentage = false
+
+[node name="timer_texture_rect" type="TextureRect" parent="canvas"]
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 246.0
+offset_bottom = 70.0
+texture = SubResource("GradientTexture1D_o3yrr")
+
+[node name="timer_label" type="Label" parent="canvas"]
+offset_left = 41.0
+offset_top = 15.0
+offset_right = 633.0
+offset_bottom = 214.0
+theme_override_font_sizes/font_size = 32
+text = "Time: "
+script = ExtResource("6_mrfdm")
+
+[node name="virus_timer" type="Timer" parent="canvas/timer_label"]
+wait_time = 180.0
+one_shot = true
+
+[node name="game_over" parent="canvas" instance=ExtResource("7_gp2uf")]
+visible = false
+
+[node name="title" parent="canvas" instance=ExtResource("8_ettt6")]
+visible = false
+
+[connection signal="die" from="level" to="." method="_on_level_die"]
+[connection signal="start_convo" from="axe_man" to="." method="_on_axe_man_start_convo"]
+[connection signal="start_convo" from="double_man" to="." method="_on_double_man_start_convo"]
+[connection signal="start_convo" from="hover_man" to="." method="_on_hover_man_start_convo"]
+[connection signal="start_convo" from="tummy_man" to="." method="_on_tummy_man_start_convo"]
+[connection signal="start_convo" from="window_man" to="." method="_on_window_man_start_convo"]
+[connection signal="start_convo" from="doctor" to="." method="_on_doctor_start_convo"]
+[connection signal="body_entered" from="door" to="." method="_on_door_body_entered"]
+[connection signal="broke" from="debris1" to="." method="_on_debris_1_broke"]
+[connection signal="broke" from="debris2" to="." method="_on_debris_2_broke"]
+[connection signal="broke" from="debris3" to="." method="_on_debris_3_broke"]
+[connection signal="got_axe" from="canvas/dialogue_box" to="debris1" method="_on_dialogue_box_got_axe"]
+[connection signal="got_axe" from="canvas/dialogue_box" to="debris2" method="_on_dialogue_box_got_axe"]
+[connection signal="got_axe" from="canvas/dialogue_box" to="debris3" method="_on_dialogue_box_got_axe"]
+[connection signal="got_double_jump" from="canvas/dialogue_box" to="player" method="_on_dialogue_box_got_double_jump"]
+[connection signal="got_hover" from="canvas/dialogue_box" to="player" method="_on_dialogue_box_got_hover"]
+[connection signal="rescued" from="canvas/dialogue_box" to="." method="_on_dialogue_box_rescued"]
+[connection signal="timeout" from="canvas/timer_label/virus_timer" to="." method="_on_virus_timer_timeout"]
+[connection signal="start" from="canvas/title" to="." method="_on_title_start"]
